@@ -54,6 +54,18 @@ main{
     > img{
        align-self: center; 
     }
+
+    h2{
+        font-size: 24px;
+        margin: 64px 0 24px ;
+        font-family: 'Poppins';
+    }
+
+    p{
+        font-size:14px;
+        color: #737388;
+        margin-top: 16px;
+    }
 }
 
 form{
@@ -73,6 +85,8 @@ form{
         width: 100%;
     }
 }
+
+
     .create-Room{
         margin-top: 64px;
         height: 50px;

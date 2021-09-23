@@ -1,12 +1,20 @@
 import illustration from "../assests/images/images/illustration.svg";
 import logoImg from "../assests/images/images/logo.svg";
-import googleImg from '../assests/images/images/google-icon.svg';
 
+// import { useHistory } from "react-router-dom";
+// import { useContext } from "react";
+// import {AuthContext} from '../contexts/AuthContexts';
+
+// import {useAuth} from '../hooks/useAuth';
+import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
 
 import '../styles/auth.scss';
 
 export function NewRoom(){
+    // const { user } = useAuth();
+    // const history  = useHistory();
+    
     return(
         <div id='page-auth'>
             <aside>
@@ -17,6 +25,7 @@ export function NewRoom(){
             <main>
                 <div className= "main-content">
                     <img src={logoImg} alt="logo" />
+                    
                    <h2>Criar uma nova sala</h2>
                     <form>
                         <input type='text' placeholder='Nome da sala'/>
@@ -25,7 +34,7 @@ export function NewRoom(){
                         </Button>
                     </form>
                     <p>
-                        Quer entrar em uma sala existente? <a href='#'>Clique aqui</a>
+                        Quer entrar em uma sala existente? <Link to='/'>Clique aqui</Link>
                     </p>
                 </div>
             </main>

@@ -1,20 +1,40 @@
 import illustration from "../assests/images/images/illustration.svg";
 import logoImg from "../assests/images/images/logo.svg";
-
+import { FormEvent, useState } from "react";
+import{ref,  push} from "firebase/database";
+import { database } from "../service/firebase";
 // import { useHistory } from "react-router-dom";
 // import { useContext } from "react";
 // import {AuthContext} from '../contexts/AuthContexts';
 
-// import {useAuth} from '../hooks/useAuth';
-import { Link } from "react-router-dom";
+import {useAuth} from '../hooks/useAuth';
+import { Link, useHistory } from "react-router-dom";
 import { Button } from "../components/Button";
 
 import '../styles/auth.scss';
 
 export function NewRoom(){
-    // const { user } = useAuth();
-    // const history  = useHistory();
-    
+    const { user } = useAuth();
+    const history  = useHistory();
+    const [newRoom, setnewRoom] = useState('');
+    async function handleCreateRoom(event:FormEvent){
+        
+        event.preventDefault();
+
+        if(newRoom.trim()===''){
+            return;
+        }
+        
+        const roomRef =  ref(database,`room`)
+        const firebaseRoom = await push(roomRef, {
+            title: newRoom,
+            authorId: user?.id
+        })
+
+        history.push(`/room/${firebaseRoom.key}`)
+    }
+
+
     return(
         <div id='page-auth'>
             <aside>
@@ -27,8 +47,11 @@ export function NewRoom(){
                     <img src={logoImg} alt="logo" />
                     
                    <h2>Criar uma nova sala</h2>
-                    <form>
-                        <input type='text' placeholder='Nome da sala'/>
+                    <form onSubmit={handleCreateRoom}>
+                        <input type='text' 
+                        placeholder='Nome da sala'
+                        onChange={event =>setnewRoom(event.target.value)}
+                        value={newRoom}/>
                         <Button type='submit'>
                             Criar sala
                         </Button>

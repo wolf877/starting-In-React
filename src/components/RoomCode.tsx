@@ -1,4 +1,3 @@
-import { type } from 'os';
 import copyImg from '../assests/images/images/copy.svg';
 
 import '../styles/room-code.scss';

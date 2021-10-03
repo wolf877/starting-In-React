@@ -22,11 +22,6 @@ type AuthContextProviderPros = {
 
 export const AuthContext = createContext({} as AuthContextType);
 
-
-
-
-
-
 export function AuthContextProvider(props: AuthContextProviderPros){
     const [user, setUser] = useState<User>();
 
